@@ -1,16 +1,5 @@
 "use strict";
-//response.data.children.data.title
-//response.data.children.data.author
-//response.data.children.data.created_utc
-//response.data.children.data.selftext
-//response.data.children.data.ups
-//response.data.children.data.preview
 
-// r/Futurology
-// r/TodayILearned
-// r/Oahu
-// r/gameofthrones
-// r/futurama
 const cards = document.querySelectorAll('.card');
 const thumbnails = document.querySelectorAll('.thumbnail');
 const titles = document.querySelectorAll('.title');
@@ -31,7 +20,6 @@ const populateInfo = (index, thumbnail, title, info, text) => {
   texts[index].innerHTML = text;
 }
 
-
 /**************************** 
 XHR REQUEST HANDLER
 ****************************/
@@ -39,22 +27,26 @@ XHR REQUEST HANDLER
 const requestHandler = function () {
   let response = JSON.parse(this.responseText);
   let posts = response.data.children;
-  for (let i = 0; i < response.data.children.length; i++) {
+  for (let i = 0; i < 25; i++) {
     let thumbnail = "";
     let selfText = "";
-    let info = `by ${posts[i].data.author} &bull; ${posts[i].data.created_utc} &bull; ${posts[i].data.ups} upvotes`;
+    let info = `by ${posts[i].data.author} &bull; ${moment.unix(posts[i].data.created_utc).fromNow()} &bull; ${posts[i].data.ups} upvotes`;
 
-    if (posts[i].data.thumbnail === "default") {
-      thumbnail = "/assets/No_Image_Available.jpg";
-    } else {
-      thumbnail = posts[i].data.thumbnail;
+    if (posts[i].data.thumbnail) {
+      if (posts[i].data.thumbnail.slice(0, 4) !== "http") {
+        thumbnail = "/assets/No_Image_Available.jpg";
+      } else {
+        thumbnail = posts[i].data.thumbnail;
+      }
     }
 
-    if (posts[i].data.selftext === "") {
-      selfText = "No subtext available..."
-    } else {
+
+    if (posts[i].data.selftext) {
       selfText = posts[i].data.selftext;
+    } else {
+      selfText = "No subtext available..."
     }
+
 
     populateInfo(i, thumbnail, posts[i].data.title, info, selfText);
   }
@@ -71,6 +63,11 @@ const subreddits = [
   'https://www.reddit.com/r/Aww/.json',
   'https://www.reddit.com/r/Tinder/.json',
   'https://www.reddit.com/r/BikiniBottomTwitter/.json',
+  'https://www.reddit.com/r/52weeksofcooking/.json',
+  'https://www.reddit.com/r/100YearsAgo/.json',
+  'https://www.reddit.com/r/nonononoYES/.json',
+  'https://www.reddit.com/r/FanTheories/.json',
+  'https://www.reddit.com/r/NetflixBestOf/.json',
   'https://www.reddit.com/r/gameofthrones/.json'
 ];
 
@@ -91,7 +88,7 @@ EVENT LISTENERS
 links.forEach(link => {
   link.addEventListener('click', () => {
     if (link.dataset.url === "RANDOM") {
-      url = subreddits[Math.floor(Math.random() * subreddits.length) + 1];
+      url = subreddits[Math.floor(Math.random() * subreddits.length)];
       queryAPI();
     } else {
       url = link.dataset.url;
@@ -114,7 +111,3 @@ facebook.addEventListener('click', () => {
 instagram.addEventListener('click', () => {
   window.open('https://www.instagram.com/reddit/');
 });
-
-// phone responsive
-// get moment running
-
