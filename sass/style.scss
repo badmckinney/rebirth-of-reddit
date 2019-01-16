@@ -1,0 +1,271 @@
+$main-background-image: url('/assets/bg.jpg');
+$header-background-image: url('/assets/header_bg.svg');
+$background-dark: #3a3a3c;
+$background-light: #fff;
+$header-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.300);
+$nav-font: 'Oswald', sans-serif;
+$main-font: 'Lato', sans-serif;
+$hover-color: #ea5d36;
+$primary-color: #b5442c;
+$secondary-color: #faaf4c;
+$small-break: 600px;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  overflow: hidden;
+  padding: 0px;
+}
+
+body {
+  background-image: $main-background-image;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
+
+  .logo-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: $background-light;
+    width: 100%;
+    height: 60px;
+    margin: 0px 0px 0px 0px;
+    box-shadow: $header-shadow;
+
+    .logo-background {
+      background-image: $header-background-image;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10px;
+      width: 410px;
+
+      @media screen and (max-width: $break-small) {
+        background-image: none;
+      }
+    }
+
+    .plus-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+      position: absolute;
+
+      .plusButton {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border: 1.5px solid $secondary-color;
+        width: 25px;
+        height: 25px;
+        color: $primary-color;
+        margin-right: 20px;
+      }
+
+      .plusButton:hover {
+        border: none;
+        background-color: $hover-color;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .plus {
+        font-size: 30px;
+        margin-bottom: 4.5px;
+      }
+    }
+  }
+  
+  .nav-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 60px;
+    background-color: $background-dark;
+    height: 40px;
+    width: 100%;
+    box-shadow: $header-shadow;
+
+    .nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        list-style: none;
+        color: #818285;
+        margin: 0px;
+        padding: 0px;
+
+        .nav-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 4px;
+          font-family: $nav-font;
+        }
+
+        .nav-item:hover {
+          color: $hover-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .main {
+    width: 100%;
+    margin-top: 130px;
+    margin-bottom: 30px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      height: 380px;
+      padding: 5px 40px 5px 40px;
+
+      @media screen and (max-width: $break-small) {
+        flex-direction: column;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: $background-light;
+        height: 360px;
+        width: 300px;
+        margin: 10px;
+        box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1), -1px -1px 4px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+
+        .thumbnail {
+          width: 100%;
+          height: 47%;
+          margin: 0;
+        }
+
+        .title {
+          font-family: $nav-font;
+          color: $background-dark;
+          font-size: 22px;
+          line-height: 24px;
+          height: 16%;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .info {
+          font-family: $main-font;
+          color: #818285;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 14px;
+          height: 10%;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .self-text {
+          font-family: $main-font;
+          font-weight: bold;
+          font-size: 14px;
+          color: $background-dark;
+          height: 16%;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .card:hover {
+        border: 4px solid $hover-color;
+      }
+
+      .card:hover .title {
+        color: $primary-color;
+      }
+
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-dark;
+    height: 40px;
+    width: 100%;
+    box-shadow: 2px -1px 2px 2px rgba(0, 0, 0, 0.300);
+
+    .social-links {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+       #social-link1,
+       #social-link2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 6px;
+        height: 25px;
+        width: 25px;
+      }
+
+      #social-link1 {
+        background: url('/assets/facebook_grey.svg') no-repeat;
+        background-position: center;
+      }
+      
+      #social-link1:hover {
+        background: url('/assets/facebook_orange.svg') no-repeat;
+        background-position: center;
+      }
+
+      #social-link2 {
+        background: url('/assets/instagram_grey.svg') no-repeat;
+        background-position: center;
+      }
+
+      #social-link2:hover {
+        background: url('/assets/instagram_orange.svg') no-repeat;
+        background-position: center;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .logo-background {
+    background-image: none;
+  }
+}
