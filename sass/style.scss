@@ -3,11 +3,14 @@ $header-background-image: url('/assets/header_bg.svg');
 $background-dark: #3a3a3c;
 $background-light: #fff;
 $header-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.300);
+$footer-shadow: 2px -1px 2px 2px rgba(0, 0, 0, 0.300);
 $nav-font: 'Oswald', sans-serif;
 $main-font: 'Lato', sans-serif;
 $hover-color: #ea5d36;
 $primary-color: #b5442c;
 $secondary-color: #faaf4c;
+$link-color: #818285;
+$card-shadow-color:  rgba(0, 0, 0, 0.1);
 $small-break: 600px;
 
 * {
@@ -69,7 +72,7 @@ body {
       .plusButton:hover {
         border: none;
         background-color: $hover-color;
-        color: #fff;
+        color: $background-light;
         cursor: pointer;
       }
 
@@ -114,7 +117,7 @@ body {
       .searchButton {
         margin: 0px 20px 0px 10px;
         background-color: $primary-color;
-        color: #fff;
+        color: $background-light;
         border: none;
         font-family: $main-font;
         font-weight: 300;
@@ -125,7 +128,7 @@ body {
 
       .searchButton:hover {
         background-color: $hover-color;
-        color: #fff;
+        color: $background-light;
         cursor: pointer;
       }
 
@@ -148,7 +151,7 @@ body {
         align-items: center;
         width: 100%;
         list-style: none;
-        color: #818285;
+        color: $link-color;
         margin: 0px;
         padding: 0px;
 
@@ -189,7 +192,7 @@ body {
         height: 360px;
         width: 300px;
         margin: 10px;
-        box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.1), -1px -1px 4px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 2px 2px 4px 4px $card-shadow-color, -1px -1px 4px 4px $card-shadow-color;
         padding: 20px;
 
         .thumbnail {
@@ -211,7 +214,7 @@ body {
 
         .info {
           font-family: $main-font;
-          color: #818285;
+          color: $link-color;
           font-size: 14px;
           font-weight: 400;
           line-height: 14px;
@@ -253,7 +256,7 @@ body {
     background-color: $background-dark;
     height: 40px;
     width: 100%;
-    box-shadow: 2px -1px 2px 2px rgba(0, 0, 0, 0.300);
+    box-shadow: $footer-shadow;
 
     .social-links {
       display: flex;
@@ -334,7 +337,7 @@ body {
           height: 100%;
 
           .nav-item {
-            border: 0.5px solid #818285;
+            border: 0.5px solid $link-color;
             height: 100%;
             width: 25%;
             font-size: 12px;

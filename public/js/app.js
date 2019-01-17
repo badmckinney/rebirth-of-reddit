@@ -55,7 +55,7 @@ const requestHandler = function () {
 };
 
 /**************************** 
-XHR
+XHR REQUEST
 ****************************/
 
 let url = 'https://www.reddit.com/r/oahu/.json';
@@ -117,3 +117,5 @@ searchButton.addEventListener('click', () => {
   url = `https://www.reddit.com/r/${searchBar.value}/.json`;
   queryAPI();
 });
+
+
