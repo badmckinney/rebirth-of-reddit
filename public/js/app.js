@@ -8,16 +8,19 @@ const texts = document.querySelectorAll('.self-text');
 const links = document.querySelectorAll('.nav-item');
 const facebook = document.querySelector('#social-link1');
 const instagram = document.querySelector('#social-link2');
+const searchBar = document.querySelector('.searchBar');
+const searchButton = document.querySelector('.searchButton');
 
 /**************************** 
 FUNCTIONS
 ****************************/
 
-const populateInfo = (index, thumbnail, title, info, text) => {
+const populateInfo = (index, thumbnail, title, info, text, permalink) => {
   thumbnails[index].src = thumbnail;
   titles[index].innerHTML = title;
   infos[index].innerHTML = info;
   texts[index].innerHTML = text;
+  cards[index].dataset.permalink = permalink;
 }
 
 /**************************** 
@@ -27,17 +30,17 @@ XHR REQUEST HANDLER
 const requestHandler = function () {
   let response = JSON.parse(this.responseText);
   let posts = response.data.children;
+
   for (let i = 0; i < 25; i++) {
     let thumbnail = "";
     let selfText = "";
+    let permalink = posts[i].data.permalink;
     let info = `by ${posts[i].data.author} &bull; ${moment.unix(posts[i].data.created_utc).fromNow()} &bull; ${posts[i].data.ups} upvotes`;
 
-    if (posts[i].data.thumbnail) {
-      if (posts[i].data.thumbnail.slice(0, 4) !== "http") {
-        thumbnail = "/assets/No_Image_Available.jpg";
-      } else {
-        thumbnail = posts[i].data.thumbnail;
-      }
+    if (posts[i].data.thumbnail.slice(0, 4) !== "http") {
+      thumbnail = "/assets/No_Image_Available.jpg";
+    } else {
+      thumbnail = posts[i].data.thumbnail;
     }
 
 
@@ -47,8 +50,7 @@ const requestHandler = function () {
       selfText = "No subtext available..."
     }
 
-
-    populateInfo(i, thumbnail, posts[i].data.title, info, selfText);
+    populateInfo(i, thumbnail, posts[i].data.title, info, selfText, permalink);
   }
 };
 
@@ -99,8 +101,7 @@ links.forEach(link => {
 
 cards.forEach(card => {
   card.addEventListener('click', () => {
-    let newUrl = url.slice(0, url.length - 5);
-    window.open(newUrl);
+    window.open(`http://www.reddit.com${card.dataset.permalink}`);
   });
 });
 
@@ -110,4 +111,9 @@ facebook.addEventListener('click', () => {
 
 instagram.addEventListener('click', () => {
   window.open('https://www.instagram.com/reddit/');
+});
+
+searchButton.addEventListener('click', () => {
+  url = `https://www.reddit.com/r/${searchBar.value}/.json`;
+  queryAPI();
 });

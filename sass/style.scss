@@ -92,6 +92,48 @@ body {
     width: 100%;
     box-shadow: $header-shadow;
 
+    .search {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      position: absolute;
+      width: 20%;
+      right: 0;
+      height: 100%;
+
+      .searchBar {
+        border-radius: 1px;
+        font-family: $main-font;
+        border: none;
+        outline: none;
+        height: 60%;
+        padding-left: 6px;
+      }
+
+      .searchButton {
+        margin: 0px 20px 0px 10px;
+        background-color: $primary-color;
+        color: #fff;
+        border: none;
+        font-family: $main-font;
+        font-weight: 300;
+        border-radius: 1px;
+        outline: none;
+        height: 60%;
+      }
+
+      .searchButton:hover {
+        background-color: $hover-color;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .searchButton:active {
+        outline: none;
+      }
+    }
+
     .nav {
       display: flex;
       flex-direction: row;
@@ -193,6 +235,7 @@ body {
 
       .card:hover {
         border: 4px solid $hover-color;
+        cursor: pointer;
       }
 
       .card:hover .title {
@@ -253,8 +296,11 @@ body {
 }
 
 @media (max-width: 480px) {
+
   body {
+
     .logo-header {
+
       .logo-background {
         background-image: none;
         height: 100%;
@@ -269,8 +315,21 @@ body {
     }
 
     .nav-header {
+
+      .search {
+
+        .searchBar {
+          display: none;
+        }
+
+        .searchButton {
+          display: none;
+        }
+      }
+
       .nav {
         height: 100%;
+
         .nav-links {
           height: 100%;
 
@@ -291,6 +350,7 @@ body {
     .main {
       margin-top: 105px;
       margin-bottom: 2.5px;
+
       .row {
         flex-direction: column;
         justify-content: center;
